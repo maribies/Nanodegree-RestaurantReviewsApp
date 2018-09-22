@@ -172,9 +172,13 @@ createReviewHTML = (review) => {
  */
 fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
+  const a = document.createElement('a');
   const li = document.createElement('li');
-  li.innerHTML = restaurant.name;
+  a.innerHTML = restaurant.name;
+  a.setAttribute('aria-current','page');
+  a.href = DBHelper.urlForRestaurant(restaurant);
   breadcrumb.appendChild(li);
+  li.appendChild(a);
 }
 
 /**
