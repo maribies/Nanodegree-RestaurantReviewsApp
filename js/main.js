@@ -162,8 +162,13 @@ createRestaurantHTML = (restaurant) => {
   imageContainer.className = "image-container";
   const image = document.createElement('img');
   image.className = 'restaurant-img';
-  image.setAttribute('alt', "restaurant image");
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.setAttribute('alt', restaurant.name + " restaurant image");
+  const imageurl = DBHelper.imageUrlForRestaurant(restaurant);
+  const imagebase = imageurl.split(".");
+  const imageurl1x = imagebase[0] + "_1x." + imagebase[1];
+  const imageurl2x = imagebase[0] + "_2x." + imagebase[1];
+  image.src = imageurl2x;
+  image.srcset = `${imageurl2x} 300w, ${imageurl1x} 600w`;
   li.append(imageContainer);
   imageContainer.append(image);
 
